@@ -26,9 +26,9 @@ struct User: Comparable, Identifiable{ // Add Comparable
 
 struct ContentView: View {
     let users = [
-        User(firstName: " Khai", lastName: "Asher"),
-        User(firstName: " Cataleya", lastName: "Grace"),
-        User(firstName: " Alexis", lastName: "Elizabeth")
+        User(firstName: " Elvis", lastName: "Presley"),
+        User(firstName: " Ilia", lastName: "Topuria"),
+        User(firstName: " Bob", lastName: "Marley")
     ] // .sorted {
     //$0.lastName < $1.lastName
     
