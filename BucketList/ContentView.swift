@@ -7,36 +7,28 @@
 
 import SwiftUI
 
-struct User: Comparable, Identifiable{ // Add Comparable
-    let id = UUID()
-    let firstName:String
-    let lastName: String
-    
-    // lhs = left hand side
-    // rhs = right hand side
-    // < = operator over loaded
-    // static func = is called directly in the User struct itself
-    
-    static func <(lhs: User, rhs: User) -> Bool {
-        lhs.lastName < rhs.lastName
-    }
-    
-        // Now that our User struct conforms to Identifiable and Comparable, we automatically get accesss to the parameter-less version of sorted()
-}
-
-struct ContentView: View {
-    let users = [
-        User(firstName: " Elvis", lastName: "Presley"),
-        User(firstName: " Ilia", lastName: "Topuria"),
-        User(firstName: " Bob", lastName: "Marley")
-    ] // .sorted {
-    //$0.lastName < $1.lastName
-    
+struct ContentView:View {
     var body: some View {
-        List(users){ user in
-            Text("\(user.lastName),\(user.firstName)")
+        Button("Read and Write") {
+            // Get the utf8 coding and convert it to pure Data
+            let data = Data("Test Message".utf8)
+            // Decide where to save it
+            let url = URL.documentsDirectory.appending(path: "message.txt")
+            
+            do {
+                // Try writing to our url
+                try data.write(to: url, options: [.atomic, .completeFileProtection])
+                // Put it back into a String
+                let input = try String(contentsOf: url)
+                print(input)
+            } catch{
+                print(error.localizedDescription)
+            }
+            
         }
     }
+    
+   
 }
 
 #Preview {
